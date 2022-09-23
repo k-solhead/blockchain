@@ -1,6 +1,10 @@
 import datetime
+import requests
+import json
+import api_list
 
 REWORD_AMOUNT = 999
+OTHER_API_LIST = api_list.API_LIST
 
 class BlockChain(object):
 
@@ -36,3 +40,9 @@ class BlockChain(object):
 
     self.chain["blocks"].append(block)
     self.transaction_pool["transactions"] = []
+
+  def broadcast_transaction(self, transaction):
+    transaction_dict = transaction.dict()
+    for url in OTHER_API_LIST:
+      res = requests.post(url+"/receive_transaction", json.dumps(transaction_dict))
+      print(res.json())

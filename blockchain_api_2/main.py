@@ -33,6 +33,7 @@ def post_transaction_pool(transaction:Transaction):
   #　トランザクションをトランザクションプールに追加する処理
 
   blockchain.add_transaction_pool(transaction)
+  blockchain.broadcast_transaction(transaction)
   return {"message":"Transaction is posted."}
   
 
@@ -42,3 +43,8 @@ def create_block(creator: str):
 
   blockchain.create_new_block(creator)
   return {"message": "New Block is Created."}
+
+@app.post("/receive_transaction")
+def receive_transaction(transaction:Transaction):
+  blockchain.add_transaction_pool(transaction)
+  return {"message":"Broadcast Transaction is success."}
