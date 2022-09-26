@@ -23,7 +23,7 @@ class BlockChain(object):
       "time": datetime.datetime.now().isoformat(),
       "sender": "Blockchain",
       "receiver": creator,
-      "aomount": REWORD_AMOUNT,
+      "amount": REWORD_AMOUNT,
       "description": "reword",
       "signature": "not need"
     }
